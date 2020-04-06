@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Chat Application</title>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.1.js"></script>
+    <style>
+
+        body{
+            background: dimgray;
+            
+        }
+    </style>
+
+    <script type="text/javascript">
+        $(function(){
+
+            var socket = io();
+            function mesajgonderolay(){
+                socket.emit('sohbetmesaj', $('#mesaj').val());
+                $('#mesaj').val('');
+            }
+            socket.on('sohbetmesaj', function(msg){
+                $('#mesajlar').append($('<li>').text(msg));
+            });
+
+            $('#btnmesajgonder').click(mesajgonderolay);
+
+            $('input#mesaj').bind('keypress', function(e) {
+                if(e.keyCode==13){
+                    mesajgonderolay();
+
+                };
+            });
+        })
+    </script>
+</head>
+<body >
+
+<h2><font color="#fffaf0">Welcome</font></h2>
+
+
+
+
+
+<form method="link" action="#">
+    <input type="submit" value="Please Log In!" button type="button" onclick="alert('Coming Soon')"></button>
+    <button1> </button1>
+</form>
+
+
+<ul id="mesajlar" type="circle">
+    <h2><font color="#bc8f8f">send a message</font></h2>
+</ul>
+<input type="text" id="mesaj" placeholder="Mesaj yazın"/>
+<button id="btnmesajgonder">send a message</button>
+</body>
+</html>
